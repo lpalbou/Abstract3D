@@ -5,13 +5,26 @@ from __future__ import annotations
 from ..backends import make_backend
 
 
+def _install_hint(engine: str) -> str:
+    """The AbstractCore-facing install hint (operator ruling 2026-09-29: an AbstractCore user
+    is only ever told to install `abstractcore`, `abstractcore[apple]` or `abstractcore[gpu]`).
+    AbstractCore's light install carries this plugin and its AbstractVision-composed contract;
+    no AbstractCore install setting carries the local 3D engines."""
+
+    return (
+        f"The local {engine} engine is not available with AbstractCore's install settings "
+        "(light, apple, gpu); AbstractCore's light install (pip install -U abstractcore) carries this "
+        "plugin and its lightweight AbstractVision composition contract."
+    )
+
+
 def register(registry) -> None:
     registry.register_scene3d_backend(
         backend_id="abstract3d:triposr",
         factory=lambda owner: make_backend("abstract3d:triposr", owner),
         priority=10,
         description="Local TripoSR image-to-3D with AbstractVision-composed text-to-3D.",
-        install_hint='pip install "abstract3d[triposr]" for local i23d, or "abstract3d[apple]" / "abstract3d[gpu]" for local composed t23d. Base "pip install abstract3d" keeps the lightweight AbstractVision composition contract.',
+        install_hint=_install_hint("TripoSR"),
         config_hint=(
             "Optional config: scene3d_device=mps|cpu, scene3d_model_id=stabilityai/TripoSR, "
             "scene3d_triposr_source_dir=/path/to/TripoSR, "
@@ -25,7 +38,7 @@ def register(registry) -> None:
         factory=lambda owner: make_backend("abstract3d:step1x-local", owner),
         priority=7,
         description="Experimental local Step1X geometry backend using official Step1X weights, geometry-only output, and AbstractVision-composed text-to-3D.",
-        install_hint='pip install "abstract3d[step1x]" for local i23d, or "abstract3d[apple]" / "abstract3d[gpu]" for local composed t23d. Base "pip install abstract3d" keeps the lightweight AbstractVision composition contract.',
+        install_hint=_install_hint("Step1X"),
         config_hint=(
             "Optional config: scene3d_backend=abstract3d:step1x-local, scene3d_device=mps|cpu|cuda, "
             "scene3d_model_id=stepfun-ai/Step1X-3D, "
@@ -43,7 +56,7 @@ def register(registry) -> None:
             "License-gated local Hunyuan3D-2.1 shape backend (strongest checked local geometry; slow). "
             "Requires an explicit Tencent license acknowledgment before any download or run."
         ),
-        install_hint='pip install "abstract3d[hunyuan3d]" for local i23d, or "abstract3d[apple]" / "abstract3d[gpu]" for local composed t23d. Base "pip install abstract3d" keeps the lightweight AbstractVision composition contract.',
+        install_hint=_install_hint("Hunyuan3D-2.1"),
         config_hint=(
             "License gate: the Tencent Hunyuan Community License excludes the EU, UK, and South Korea; "
             "this backend refuses to download or run until you opt in with "
@@ -58,7 +71,7 @@ def register(registry) -> None:
         factory=lambda owner: make_backend("abstract3d:trellis2-local", owner),
         priority=5,
         description="Local TRELLIS.2 image-to-3D using official Microsoft checkpoints and official companion models only.",
-        install_hint='pip install "abstract3d[trellis2]" for local i23d, or "abstract3d[apple]" / "abstract3d[gpu]" for local composed t23d. Base "pip install abstract3d" keeps the lightweight AbstractVision composition contract.',
+        install_hint=_install_hint("TRELLIS.2"),
         config_hint=(
             "Optional config: scene3d_backend=abstract3d:trellis2-local, scene3d_device=mps|cpu|cuda, "
             "scene3d_model_id=microsoft/TRELLIS.2-4B, "

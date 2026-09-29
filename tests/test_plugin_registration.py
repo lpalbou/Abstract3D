@@ -23,21 +23,23 @@ def test_plugin_registers_scene3d_backends_with_expected_contract() -> None:
         "abstract3d:trellis2-local",
     ]
     assert recorded[0]["priority"] == 10
-    assert 'abstract3d[triposr]' in recorded[0]["install_hint"]
-    assert 'pip install abstract3d' in recorded[0]["install_hint"]
-    assert 'abstract3d[apple]' in recorded[0]["install_hint"]
+    # AbstractCore-facing hints name only AbstractCore's settings (ruling 2026-09-29).
+    for item in recorded:
+        assert "abstract3d[" not in item["install_hint"], item["install_hint"]
+        assert "not available with AbstractCore's install settings" in item["install_hint"]
+    assert "TripoSR" in recorded[0]["install_hint"]
+    assert "pip install -U abstractcore" in recorded[0]["install_hint"]
     assert recorded[1]["priority"] == 7
-    assert 'abstract3d[step1x]' in recorded[1]["install_hint"]
-    assert 'abstract3d[gpu]' in recorded[1]["install_hint"]
+    assert "Step1X" in recorded[1]["install_hint"]
     # Hunyuan registers BELOW TripoSR (validated default keeps priority) and
     # its hints must carry the license gate loudly.
     assert recorded[2]["priority"] == 8
-    assert 'abstract3d[hunyuan3d]' in recorded[2]["install_hint"]
+    assert "Hunyuan3D-2.1" in recorded[2]["install_hint"]
     assert "License gate" in recorded[2]["config_hint"]
     assert "ABSTRACT3D_HUNYUAN_ACCEPT_LICENSE" in recorded[2]["config_hint"]
     assert "License-gated" in recorded[2]["description"]
     assert recorded[3]["priority"] == 5
-    assert 'abstract3d[trellis2]' in recorded[3]["install_hint"]
+    assert "TRELLIS.2" in recorded[3]["install_hint"]
     assert 'AbstractVision composition contract' in recorded[3]["install_hint"]
     triposr_backend = recorded[0]["factory"](owner=None)
     step1x_backend = recorded[1]["factory"](owner=None)
