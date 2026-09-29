@@ -10,7 +10,7 @@
 
 ## Current Counts
 
-- Planned: 11
+- Planned: 12
 - Proposed: 7
 - Completed: 5
 - Deprecated: 0
@@ -31,6 +31,7 @@ Active planned work:
 9. [0008_step1x_mlx_runtime_integration_validation_and_promotion_gate.md](planned/step1x-mlx/0008_step1x_mlx_runtime_integration_validation_and_promotion_gate.md)
 10. [0003_step1x_quality_tuning_on_apple_silicon.md](planned/step1x/0003_step1x_quality_tuning_on_apple_silicon.md)
 11. [0024_pixal3d_pixel_aligned_i23d_backend.md](planned/0024_pixal3d_pixel_aligned_i23d_backend.md) — Phase 1 is a cheap feasibility spike that can be run ahead of the rest of this list.
+12. [0025_local_3d_engines_in_apple_and_gpu_settings.md](planned/0025_local_3d_engines_in_apple_and_gpu_settings.md) — P2 (operator ruling 2026-09-29). Its packaging-hygiene step (psutil/unstructured downgrade, pymeshlab glibc floor, dual `cv2`) can run ahead because it needs no model run.
 
 Recommended next proposed follow-up after that:
 
@@ -76,6 +77,9 @@ Recommended next proposed follow-up after that:
 - [0024_pixal3d_pixel_aligned_i23d_backend.md](planned/0024_pixal3d_pixel_aligned_i23d_backend.md):
   stands alone until its Phase 1 spike lands. Promote it to a `planned/pixal3d/` track if the
   backend and PBR-export phases split into separate items.
+- [0025_local_3d_engines_in_apple_and_gpu_settings.md](planned/0025_local_3d_engines_in_apple_and_gpu_settings.md):
+  cross-cutting packaging and device-portability item (AbstractCore `apple` / `gpu` settings);
+  stands alone because it touches every backend lightly rather than one backend deeply.
 
 ## Planned Ledger
 
@@ -92,6 +96,7 @@ Recommended next proposed follow-up after that:
 | 0007 | Step1X MLX conditioning, autoencoder, and mesh decode | `docs/backlog/planned/step1x-mlx/0007_step1x_mlx_conditioning_autoencoder_and_mesh_decode.md` | Planned | Extends the MLX lane beyond denoising so final meshes can be traced through conditioning and decode diagnostics. |
 | 0008 | Step1X MLX runtime integration, validation, and promotion gate | `docs/backlog/planned/step1x-mlx/0008_step1x_mlx_runtime_integration_validation_and_promotion_gate.md` | Planned | Wires the MLX lane into `abstract3d` and preserves proof discipline before any promotion decision. |
 | 0024 | Pixal3D pixel-aligned i23d backend with native PBR texture stage | `docs/backlog/planned/0024_pixal3d_pixel_aligned_i23d_backend.md` | Planned | MIT-licensed TRELLIS.2-backbone fork with pixel back-projection and the catalog's first native PBR texture stage; reuses the existing TRELLIS.2 vendoring, DINOv3 gate, and Apple shims. Phase 1 is a fail-closed feasibility spike on the CUDA-only `flex_gemm` texture path. |
+| 0025 | Local 3D engines in the apple and gpu settings | `docs/backlog/planned/0025_local_3d_engines_in_apple_and_gpu_settings.md` | Planned | No AbstractCore install setting carries a local 3D engine today. Fix the packaging defects found by `uv pip compile` on 2026-09-29 (psutil<7 downgrades AbstractCore's unstructured 0.27.10 to 0.18.32; pymeshlab<2025 blocks manylinux_2_28; dual `cv2`), then add `abstract3d[apple]` to `abstractcore[apple]`. `gpu` follows only after recorded NVIDIA runs (none exist) and abstractvision 030 for local t23d. |
 
 ## Proposed Ledger
 
@@ -171,3 +176,8 @@ No deprecated backlog items are recorded yet.
   the TRELLIS.2 backbone this repository already vendors. Its risk is concentrated in one place:
   the texture decode path imports CUDA-only `flex_gemm`, which our TRELLIS.2 lane has never had to
   exercise. Phase 1 exists to answer that before any runtime work starts.
+- Local engines are not in any AbstractCore install setting (commit `b074378` says so in the
+  plugin hint). Item 0025 plans `apple` first, because TripoSR, Step1X, Hunyuan3D and mesh ops
+  already run on Apple silicon. `gpu` comes only after recorded NVIDIA runs, because no NVIDIA,
+  CUDA or Windows run exists in any backlog record, and the Step1X/Hunyuan3D CUDA `float16`
+  defaults have never executed.
