@@ -2372,8 +2372,8 @@ Adversarial research pass over the generative process
   community port runs the same DiT clean on MPS fp16, and our torch 2.10.0
   sits inside a documented window of silent-garbage MPS SDPA bugs
   (non-contiguous fast path, 2^32 score overflow). Diagnosis ladder filed
-  as backlog 0020; MV-Adapter ig2mv (Apache-2.0 weights confirmed) filed
-  as backlog 0021.
+  as backlog 0026; MV-Adapter ig2mv (Apache-2.0 weights confirmed) filed
+  as backlog 0027.
 
 ### The winning view recipe is conditioning-layout + LoRA, not wording; gate pose at DRAW time (2026-07-21, bench §6 integrated)
 

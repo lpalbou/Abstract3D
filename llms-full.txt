@@ -50,12 +50,14 @@ pip install "abstract3d[step1x]"
 pip install "abstract3d[hunyuan3d]"
 pip install "abstract3d[apple]"
 pip install "abstract3d[gpu]"
-pip install "abstractcore[scene3d]"
 ```
 
 `pip install abstract3d` includes the lightweight `abstractvision` package contract. Use
 `abstract3d[apple]` or `abstract3d[gpu]` when the same environment should run local image
 composition as well as local 3D backends.
+
+AbstractCore's light install (`pip install abstractcore`) already includes `abstract3d` and registers the
+`scene3d` plugin. AbstractCore's install settings (light, apple, gpu) do not include the local 3D engines.
 
 Typical validated proof command:
 
@@ -297,18 +299,23 @@ Interpretation:
 
 ## docs/integration-abstractcore.md
 
-Install `abstract3d` into the same environment as `abstractcore`.
+AbstractCore's light install (`pip install abstractcore`) includes `abstract3d`, so the plugin registers with no
+extra step. AbstractCore's install settings (light, apple, gpu) do not include the local 3D engines (TripoSR,
+Step1X, Hunyuan3D-2.1, TRELLIS.2); they are optional extras of the standalone `abstract3d` package, and the
+plugin's install hint says so when a backend is selected without its engine.
 
 Exposed backend ids:
 
 - `abstract3d:triposr`
 - `abstract3d:step1x-local`
+- `abstract3d:hunyuan3d21-local`
 - `abstract3d:trellis2-local`
 
 Accepted provider aliases:
 
 - `triposr`
 - `step1x`
+- `hunyuan3d21` (also `hunyuan3d`)
 - `trellis2`
 
 Example Step1X host call:
@@ -322,7 +329,7 @@ mesh_step1x = llm.scene3d.i23d(
 )
 ```
 
-The current boundary is: TripoSR validated, Step1X geometry experimental, Hunyuan3D-2.1 license-gated and intentionally not registered with the AbstractCore plugin (direct `Scene3DManager`/CLI only), TRELLIS.2 implemented but outside the permissive validated path.
+The current boundary is: TripoSR validated, Step1X geometry experimental, Hunyuan3D-2.1 license-gated (registered with the AbstractCore plugin; the license gate still applies), TRELLIS.2 implemented but outside the permissive validated path.
 
 ---
 

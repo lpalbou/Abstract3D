@@ -43,7 +43,7 @@ The repository also ships an experimental local Step1X backend:
 - A focused texture-proof pack builder: [`scripts/triposr_texture_proof.py`](scripts/triposr_texture_proof.py)
 - A public model catalog for validated, experimental, blocked, and research-stage model families
 
-## Current State (v0.2.0)
+## Current State (v0.3.2)
 
 Development status: **Alpha**. Object-centric generation only: one centered subject per
 image; multi-object scenes, cluttered backgrounds, and strong occlusion are out of scope.
@@ -167,11 +167,9 @@ GPU-local profile for Linux/Windows NVIDIA or AMD hosts:
 pip install "abstract3d[gpu]"
 ```
 
-If you want host-side plugin discovery from AbstractCore:
-
-```bash
-pip install "abstractcore[scene3d]"
-```
+AbstractCore's light install (`pip install abstractcore`) already includes `abstract3d` and registers the
+`scene3d` plugin. AbstractCore's install settings (light, apple, gpu) do not include the local 3D engines above;
+see [`docs/integration-abstractcore.md`](docs/integration-abstractcore.md).
 
 Notes:
 

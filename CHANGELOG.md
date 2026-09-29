@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.2 (2026-09-29)
+
+- The AbstractCore plugin's install hints for the local engines (TripoSR,
+  Step1X, Hunyuan3D-2.1) now say that these engines are not part of
+  AbstractCore's install settings (light, apple, gpu), and that AbstractCore's
+  light install (`pip install -U abstractcore`) carries this plugin and its
+  lightweight AbstractVision composition contract. They no longer suggest
+  `abstract3d[...]` extras to AbstractCore users.
+- Docs: AbstractCore integration now points to AbstractCore's light install
+  (`pip install abstractcore`, which includes `abstract3d`) instead of the
+  `abstractcore[scene3d]` extra, and the README status heading matches the
+  package version.
+- No API or dependency changes.
+
 ## 0.3.1 (2026-09-23)
 
 Summary of what this release adds for users (details follow):

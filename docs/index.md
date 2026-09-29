@@ -7,7 +7,7 @@ Local-first 3D generation for the AbstractFramework ecosystem.
 - `image_to_scene3d` (`i23d`) — one centered subject photo in, textured `glb` out
 - `text_to_scene3d` (`t23d`) — composed text-to-image-to-3D through `abstractvision`
 
-## Current State (v0.2.0)
+## Current State (v0.3.2)
 
 Development status: **Alpha**, object-centric generation only.
 

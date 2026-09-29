@@ -1,10 +1,11 @@
-# Proposed: Hunyuan3D-2.1 flagship MPS shredding — diagnosis ladder
+# 0026 — Proposed: Hunyuan3D-2.1 flagship MPS shredding — diagnosis ladder
 
 ## Metadata
 
 - Created: 2026-07-21
 - Status: Proposed
 - Completed: N/A
+- Renumbered: 2026-09-29, from a duplicate 0020 (0020 is the Eval3D probes item)
 
 ## ADR status
 

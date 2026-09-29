@@ -1,10 +1,11 @@
-# Proposed: MV-Adapter ig2mv as clay-conditioned view generator (Apache-2.0 lane)
+# 0027 — Proposed: MV-Adapter ig2mv as clay-conditioned view generator (Apache-2.0 lane)
 
 ## Metadata
 
 - Created: 2026-07-21
 - Status: Proposed
 - Completed: N/A
+- Renumbered: 2026-09-29, from a duplicate 0021 (0021 is the ArcFace/CLIP metrics item)
 
 ## ADR status
 

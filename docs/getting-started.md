@@ -58,11 +58,9 @@ GPU-local profile with `abstractvision`, the validated TripoSR path, and the exp
 pip install "abstract3d[gpu]"
 ```
 
-AbstractCore host integration:
-
-```bash
-pip install "abstractcore[scene3d]"
-```
+AbstractCore host integration: AbstractCore's light install (`pip install abstractcore`) already includes
+`abstract3d` and registers the `scene3d` plugin. AbstractCore's install settings (light, apple, gpu) do not
+include the local 3D engines; see [AbstractCore integration](integration-abstractcore.md).
 
 ## First Successful Runs
 

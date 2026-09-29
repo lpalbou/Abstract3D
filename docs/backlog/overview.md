@@ -11,7 +11,7 @@
 ## Current Counts
 
 - Planned: 12
-- Proposed: 7
+- Proposed: 9
 - Completed: 5
 - Deprecated: 0
 - Recurrent: 2
@@ -109,6 +109,9 @@ Recommended next proposed follow-up after that:
 | 0020 | Eval3D-class normal-agreement + semantic-consistency probes | `docs/backlog/proposed/0020_eval3d_normal_agreement_and_semantic_consistency_probes.md` | Proposed | Promote when a local normal-estimator/DINO tier is accepted; must rank e20/e21 texture failures without the photo before becoming a rank driver. |
 | 0021 | ArcFace identity + CLIP similarity metrics | `docs/backlog/proposed/0021_arcface_identity_and_clip_similarity_metrics.md` | Proposed | Promote when the larger model tier is accepted and the identity metric beats SFace's margin on the calibration poles + a synthetic corruption ladder. |
 | 0022 | Promote v2 mesh metrics into loop quality_verdict | `docs/backlog/proposed/0022_promote_v2_mesh_metrics_into_loop_quality_verdict.md` | Proposed | Promote after the v2 instrument is re-verified on a second subject; ranking is validated, absolute thresholds are not yet. |
+| 0023 | Surface extraction performance | `docs/backlog/proposed/0023_surface_extraction_performance.md` | Proposed | Promote when the queued after-state validation of the 512³ decode timing lands; a Metal marching-cubes path stays later work. |
+| 0026 | Hunyuan3D-2.1 flagship MPS shredding diagnosis ladder | `docs/backlog/proposed/0026_hunyuan3d_flagship_mps_shredding_diagnosis.md` | Proposed | Promote on one reproducible, seed-pinned green flagship run (384/30, then 512/50) with the root cause named by a minimal repro, or a gated torch-version bug. Renumbered from a duplicate 0020 on 2026-09-29. |
+| 0027 | MV-Adapter ig2mv as clay-conditioned view generator | `docs/backlog/proposed/0027_mv_adapter_ig2mv_clay_conditioned_views.md` | Proposed | Promote when an MPS run inside the 20 GB profile yields six gate-passing views and matches or beats the best local view recipe on identity and pose. Renumbered from a duplicate 0021 on 2026-09-29. |
 
 ## Completed Ledger
 

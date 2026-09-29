@@ -2,50 +2,19 @@
 
 ## Install
 
-Install `abstract3d` into the same environment as `abstractcore`.
-
-Base install:
+AbstractCore's light install includes `abstract3d`, so the `scene3d` plugin registers with no extra step:
 
 ```bash
-pip install abstract3d
-pip install "abstractcore[scene3d]"
+pip install abstractcore
 ```
 
-That profile includes the lightweight `abstractvision` package contract for provider-neutral composed
-`t23d`. Add local runtime extras only when the same environment should run the image and 3D models
-in-process.
+The light install carries the lightweight `abstractvision` package contract for provider-neutral composed
+`t23d`, which can use remote OpenAI or OpenAI-compatible image generation.
 
-Validated TripoSR path:
-
-```bash
-pip install "abstract3d[triposr]"
-pip install "abstractcore[scene3d]"
-```
-
-Experimental Step1X geometry path:
-
-```bash
-pip install "abstract3d[step1x]"
-pip install "abstractcore[scene3d]"
-```
-
-If you also want the composed Apple-local `t23d` path:
-
-```bash
-pip install "abstract3d[apple]"
-```
-
-For Linux/Windows GPU hosts, use:
-
-```bash
-pip install "abstract3d[gpu]"
-```
-
-Compatibility alias for callers that still request the historical composed `t23d` extra:
-
-```bash
-pip install "abstract3d[t23d]"
-```
+AbstractCore's install settings (light, `abstractcore[apple]`, `abstractcore[gpu]`) do not include the local
+3D engines (TripoSR, Step1X, Hunyuan3D-2.1, TRELLIS.2). When a backend is selected without its engine, the
+plugin's install hint says so. The local engines are optional extras of the standalone `abstract3d` package;
+see [Installation in the README](../README.md#installation) and [Getting started](getting-started.md).
 
 ## Capability Discovery
 
